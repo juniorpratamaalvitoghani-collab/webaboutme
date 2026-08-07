@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyApp</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Google: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      /* BACKGROUND UTAMA: ABU-ABU SEMEN LEMBUT */
+      background-color: #94a3b8; 
+      color: #0f172a;
+      overflow-x: hidden;
+    }
+    .custom-cursor {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.8) 0%, rgba(16, 185, 129, 0.4) 60%, transparent 100%);
+      box-shadow: 0 0 15px #0284c7, 0 0 30px #10b981;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s ease-out, opacity 0.2s ease-in-out;
+      z-index: 9999;
+    }
+
+    /* BACKGROUND KEDUA: KANVAS UTAMA DENGAN DUA NADA WARNA */
+    .bg-wrapper-canvas {
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.18);
+    }
+
+    /* KARTU PROYEK: LEKUKAN 12PX */
+    .project-card-custom {
+      background-color: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      transition: all 0.3s ease;
+    }
+    .project-card-custom:hover {
+      border-color: #0ea5e9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(14, 165, 233, 0.18);
+    }
+
+    /* Dashed Frame untuk Slot Kosong */
+    .cyber-dashed-slot {
+      border: 2px dashed #cbd5e1;
+      background: #ffffff;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    .cyber-dashed-slot:hover {
+      border-color: #0ea5e9;
+      box-shadow: 0 4px 15px rgba(14, 165, 233, 0.12);
+    }
+  </style>
+</head>
+<body class="min-h-screen relative selection:bg-sky-500 selection:text-white pt-20 pb-12 px-4"></body>
+
+  <!-- Custom Glowing Cursor -->
+  <div id="cursor" class="custom-cursor"></div>
+
+  <!-- Ambient Glow Spheres -->
+  <div class="fixed top-10 left-10 w-96 h-96 bg-sky-300/30 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="fixed bottom-10 right-10 w-96 h-96 bg-emerald-300/30 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- 1. NAVIGASI MELAYANG (FLOATING MENU BAR STICKY) -->
+  <nav class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-white/90 border border-slate-200/80 shadow-md backdrop-blur-md rounded-full px-4 py-1.5 flex items-center gap-1.5 sm:gap-2">
+    <a href="#profile-section" class="px-3 py-1 text-xs font-bold text-slate-700 hover:text-sky-600 hover:bg-slate-100 rounded-full transition-all">Profil</a>
+    <span class="text-slate-300 text-xs">•</span>
+    <a href="#web-projects-section" class="px-3 py-1 text-xs font-bold text-slate-700 hover:text-sky-600 hover:bg-slate-100 rounded-full transition-all">Website</a>
+    <!--<span class="text-slate-300 text-xs">•</span>-->
+    <!--<a href="#iot-section" class="px-3 py-1 text-xs font-bold text-slate-700 hover:text-sky-600 hover:bg-slate-100 rounded-full transition-all">Kredensial</a>-->
+  </nav>
+
+  <!-- CONTAINER KANVAS UTAMA -->
+  <main class="max-w-2xl mx-auto bg-wrapper-canvas rounded-3xl overflow-hidden relative">
+
+    <!-- SEKSI 1: BIO / PROFIL PRIBADI (BACKGROUND PUTIH BERSIH) -->
+    <section id="profile-section" class="w-full bg-white p-6 sm:p-10 text-center flex flex-col items-center">
+      <!-- Indicator Badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100 border border-sky-200 text-sky-700 text-xs font-semibold mb-6">
+        <span class="w-2 h-2 rounded-full bg-sky-500 animate-ping"></span>
+        MyApp
+      </div>
+
+      <!-- Foto Profil -->
+   <div class="relative w-24 h-24 mb-5 mx-auto rounded-full border-2 border-sky-500 p-1 shadow-md overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105" onclick="openModal(this.querySelector('img').src)">
+  <!-- Foto dengan tambahan class 'object-top' -->
+  <img 
+    src="vito.jpg" 
+    alt="Profile Picture" 
+    class="w-full h-full object-cover object-top rounded-full"
+  >
+</div>
+
+<!-- Modal Popup Container (Ditaruh sebelum </body>) -->
+<div 
+  id="imageModal" 
+  class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300"
+  onclick="closeModal()"
+>
+  <div class="relative max-w-lg w-full bg-transparent p-2 text-center" onclick="event.stopPropagation()">
+    <!-- Tombol Close -->
+    <button 
+      onclick="closeModal()" 
+      class="absolute -top-10 right-0 text-white hover:text-sky-400 text-3xl font-bold focus:outline-none"
+    >
+      &times;
+    </button>
+    <!-- Gambar Detail Besar Full HD saat Diklik -->
+    <img 
+      id="modalImg" 
+      src="" 
+      alt="Detail Photo" 
+      class="max-h-[85vh] mx-auto rounded-xl shadow-2xl border-2 border-sky-500/50 object-contain"
+    >
+  </div>
+</div>
+
+<!-- Script Javascript Modal -->
+<script>
+  function openModal(imageSrc) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    modalImg.src = imageSrc;
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+</script>
+
+      <!-- Informasi Diri -->
+      <h1 class="text-2xl font-extrabold text-black mb-1 tracking-tight">Alvito Ghani Junior Pratama</h1>
+      <!--<p class="text-sky-600 font-semibold text-sm mb-0.5">Departemen Teknik Elektro / Teknik Telekomunikasi</p>
+      <p class="text-slate-500 text-xs font-semibold">Semester III</p> -->
+    </section>
+
+    <!-- GARIS PEMBATAS TIPIS DENGAN DUA NADA WARNA -->
+    <div class="border-t border-slate-200/80"></div>
+
+    <!-- WADAH SEKSI BAWAH (BACKGROUND ABU-ABU SANGAT MUDA #F8FAFC) -->
+    <div class="bg-slate-50/90 p-6 sm:p-10 flex flex-col gap-10">
+
+      <!-- SEKSI 2: FEATURED WEB PROJECTS -->
+      <section id="web-projects-section" class="w-full pt-2">
+        <h2 class="text-xl font-bold text-black mb-1 flex items-center gap-2.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span>
+          Website
+        </h2>
+        <p class="text-slate-500 text-xs mb-6">Aplikasi Website.</p>
+
+        <div class="flex flex-col gap-4">
+
+    <!-- ==================== WEB PERTAMA ==================== -->
+    <a href="https://tinyurl.com/antiscam-url" target="_blank" class="group project-card-custom p-5 flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+      <div>
+        <div class="text-[10px] font-bold text-sky-800 bg-sky-100/80 border border-sky-200 px-2.5 py-0.5 rounded-md inline-block mb-2">WebApp 1</div>
+        <h3 class="text-lg font-bold text-black group-hover:text-sky-600 transition-colors mb-1">
+          Anti-Scam URL
+        </h3>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          Sistem deteksi URL phising.
+        </p>
+      </div>
+      <div class="bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold px-3.5 py-2 rounded-lg flex items-center gap-1.5 transition-all shadow-sm group-hover:scale-105 self-start sm:self-center shrink-0">
+        <span>Buka Proyek</span> ➔
+      </div>
+    </a>
+
+    <!-- ==================== WEB KEDUA ==================== -->
+    <a href="https://wisatanganjuk.vercel.app" target="_blank" class="group project-card-custom p-5 flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+      <div>
+        <div class="text-[10px] font-bold text-sky-800 bg-sky-100/80 border border-sky-200 px-2.5 py-0.5 rounded-md inline-block mb-2">WebApp 2</div>
+        <h3 class="text-lg font-bold text-black group-hover:text-sky-600 transition-colors mb-1">
+          Wisata Nganjuk
+        </h3>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          List Wisata di Kabupaten Nganjuk.
+        </p>
+      </div>
+      <div class="bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold px-3.5 py-2 rounded-lg flex items-center gap-1.5 transition-all shadow-sm group-hover:scale-105 self-start sm:self-center shrink-0">
+        <span>Buka Proyek</span> ➔
+      </div>
+    </a>
+
+    <!-- ==================== WEB KETIGA ==================== -->
+    <a href="https://bit.ly/dl-vt-nowm" target="_blank" class="group project-card-custom p-5 flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+      <div>
+        <div class="text-[10px] font-bold text-sky-800 bg-sky-100/80 border border-sky-200 px-2.5 py-0.5 rounded-md inline-block mb-2">WebApp 3</div>
+        <h3 class="text-lg font-bold text-black group-hover:text-sky-600 transition-colors mb-1">
+         VT Downloader
+        </h3>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          Download Video Tik Tok tanpa watermark.
+        </p>
+      </div>
+      <div class="bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold px-3.5 py-2 rounded-lg flex items-center gap-1.5 transition-all shadow-sm group-hover:scale-105 self-start sm:self-center shrink-0">
+        <span>Buka Proyek</span> ➔
+      </div>
+    </a>
+
+  </div>
+</section>
+
+      <hr class="border-slate-200/80">
+
+      <!-- SEKSI 3: 10 EXPANSION SLOTS GRID
+      <section id="iot-section" class="w-full">
+        <h2 class="text-xl font-bold text-black mb-1 flex items-center gap-2.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          Kredensial
+        </h2>
+        <p class="text-slate-500 text-xs mb-6">Works and Certif.</p>
+
+        <div id="grid-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          -->
+          <!-- Generasi 10 Kotak Slot Kosong via JS
+        </div>
+      </section>
+      
+      <hr class="border-slate-200/80">
+-->
+      <!-- SEKSI 4: BAR SOSIAL MEDIA -->
+      <footer class="w-full flex flex-col items-center gap-4">
+        <div class="w-full grid grid-cols-2 sm:grid-cols-4 gap-3 text-center px-2">
+          <a href="https://linkedin.com/alvito-ghani-junior-pratama" target="_blank" class="py-2.5 rounded-[12px] bg-white border border-slate-200 text-slate-700 hover:text-sky-600 hover:border-sky-400 transition-all text-xs font-semibold">LinkedIn</a>
+          <a href="https://github.com/juniorpratamaalvitoghani-collab" target="_blank" class="py-2.5 rounded-[12px] bg-white border border-slate-200 text-slate-700 hover:text-sky-600 hover:border-sky-400 transition-all text-xs font-semibold">GitHub</a>
+          <a href="https://instagram.com/__ootiv?igsh=MXhnY3B2dXRtdzR4bw==" target="_blank" class="py-2.5 rounded-[12px] bg-white border border-slate-200 text-slate-700 hover:text-sky-600 hover:border-sky-400 transition-all text-xs font-semibold">Instagram</a>
+          <a href="https://tiktok.com/@nativeeejava?is_from_webapp=1&sender_device=pc" target="_blank" class="py-2.5 rounded-[12px] bg-white border border-slate-200 text-slate-700 hover:text-sky-600 hover:border-sky-400 transition-all text-xs font-semibold">TikTok</a>
+        </div>
+        <p class="text-[10px] text-slate-400 mt-2">© 2026 MyApp.</p>
+      </footer>
+
+    </div>
+
+  </main>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Custom Glowing Cursor Follower
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    /* Render 10 Expansion Slots
+    const gridContainer = document.getElementById('grid-container');
+    for (let i = 1; i <= 10; i++) {
+      const slotNum = String(i).padStart(2, '0');
+      const cardHtml = `
+        <div class="cyber-dashed-slot p-4 flex flex-col justify-between min-h-[110px] relative group overflow-hidden">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-[9px] font-mono text-slate-400 uppercase tracking-widest">#${slotNum}</span>
+            <span class="text-[10px] text-slate-400 group-hover:text-sky-600 transition-colors"></span>
+          </div>
+          <div class="my-auto text-center py-1">
+            <p class="text-xs font-semibold text-slate-600 group-hover:text-sky-600 transition-colors">Empty Slot</p>
+          </div>
+          <div class="text-[9px] text-slate-400 text-center"></div>
+        </div>
+      `;
+      gridContainer.innerHTML += cardHtml;
+    }
+       */
+  </script>
+</body>
+</html>
