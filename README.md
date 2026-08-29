@@ -1,58 +1,53 @@
-# 🏞️ Wisata Nganjuk
+# Personal Portfolio Website - MyApp
 
-Sistem informasi berbasis web untuk menjelajahi berbagai destinasi wisata di Kabupaten Nganjuk, Jawa Timur. Dilengkapi dengan antarmuka yang modern, responsif, dan dukungan tampilan *Light/Dark Mode*.
+Ini adalah repositori untuk website portofolio pribadi saya. Website ini dirancang dengan gaya modern, minimalis, dan futuristik, menampilkan profil singkat saya dan beberapa proyek *web application*.
+Website ini dideploy menggunakan Vercel.
 
-![Next.js](https://img.shields.io/badge/Next.js-14%2B-black?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tail-wind-css&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+##  Fitur Utama
 
-## 🚀 Fitur Utama
+- **Desain Modern & Futuristik:** Menggunakan palet warna *deep navy* dan tema *glassmorphism* untuk elemen kartu.
+- **Latar Belakang Partikel Animasi:** Latar belakang dinamis dengan bintik-bintik putih melayang yang memberikan kesan interaktif.
+- **Navigasi Melayang:** Menu bar sticky yang responsif untuk navigasi cepat antar bagian (Profil, Website).
+- **Modal Foto:** Fitur pop-up untuk melihat foto profil dalam resolusi penuh dengan latar belakang redup.
+- **Responsif:** Dioptimalkan untuk tampilan di berbagai perangkat, mulai dari desktop hingga smartphone.
 
-* **Katalog Wisata Lengkap:** Menampilkan daftar objek wisata alam (air terjun, bukit, perkemahan) hingga wisata budaya.
-* **Detail Destinasi:** Informasi rinci mencakup deskripsi, jam operasional, harga tiket, dan lokasi.
-* **Desain Responsif:** Tampilan web yang optimal di perangkat *mobile*, tablet, maupun *desktop*.
-* **Dark Mode Support:** Akses nyaman di berbagai kondisi pencahayaan.
+##  Teknologi yang Digunakan
 
-## 🛠️ Teknologi yang Digunakan
+- **HTML5:** Struktur konten website.
+- **Tailwind CSS (CDN):** Framework CSS utility-first untuk *styling* cepat dan responsif.
+- **JavaScript (Vanilla):** Untuk logika modal foto, *smooth scrolling*, dan sistem latar belakang partikel animasi.
+- **Font Google (Plus Jakarta Sans):** Tipografi modern dan bersih.
+- **Vercel:** Platform untuk deployment dan hosting statis.
 
-* **Framework:** [Next.js](https://nextjs.org/) (App Router)
-* **Bahasa:** [TypeScript](https://www.typescriptlang.org/)
-* **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-* **Deployment:** [Vercel](https://vercel.com/)
+##  Struktur Konten
 
----
+Website ini dibagi menjadi beberapa bagian utama:
 
-## 💻 Cara Menjalankan Proyek di Lokal
+1.  **Profil:** Menampilkan badge indikator status, foto profil (dengan fitur modal), nama lengkap, dan deskripsi diri singkat.
+2.  **Website:** Daftar *featured* proyek aplikasi web yang telah diselesaikan.
 
-### Prasyarat
-Pastikan kamu sudah menginstal [Node.js](https://nodejs.org/) (versi 18.x atau yang lebih baru) dan `git` di komputer kamu.
+##  Proyek Web yang Ditampilkan
 
-### Langkah-Langkah
+Bagian "Website" menampilkan 3 aplikasi web unggulan saya:
 
-1. **Clone repository ini:**
-   git clone [https://github.com/juniorpratamaalvitoghani-collab/wisatanganjuk.git](https://github.com/juniorpratamaalvitoghani-collab/wisatanganjuk.git)
-2.Masuk ke direktori proyek:
-   cd wisatanganjuk
-3.Install dependensi:
-   npm install
-4.Jalankan server pengembangan (development):
-   npm run dev
+1.  **Anti-Scam URL:** Sistem deteksi URL phishing untuk meningkatkan keamanan pengguna internet.
+2.  **Wisata Nganjuk:** Panduan dan daftar lokasi wisata menarik di Kabupaten Nganjuk.
+3.  **VT Downloader:** Alat untuk mengunduh video TikTok tanpa tanda air (*watermark*).
 
-   wisatanganjuk/
-├── public/
-│   └── images/              # Aset gambar & logo transparan
-├── src/
-│   ├── app/                 # Next.js App Router (Halaman & Routing)
-│   │   ├── destinations/    # Halaman detail destinasi [slug]
-│   │   ├── globals.css      # Styling global Tailwind CSS
-│   │   ├── layout.tsx       # Root layout & Metadata SEO
-│   │   └── page.tsx         # Halaman utama (Homepage)
-│   └── data/                # File JSON data destinasi wisata
-├── package.json
-└── README.md
+Setiap kartu proyek menyertakan deskripsi singkat dan tombol langsung untuk membuka aplikasi tersebut.
 
-### Deployment
-git add .
-git commit -m "Update fitur atau konten"
-git push origin main
+##  Menjalankan Secara Lokal
+
+Jika Anda ingin melihat atau mengembangkan website ini di komputer lokal Anda:
+
+1.  **Clone repositori ini:**
+    git clone [https://github.com/USERNAME_ANDA/REPOS_ANDA.git](https://github.com/USERNAME_ANDA/REPOS_ANDA.git)
+    cd REPOS_ANDA
+2.  **Buka file `index.html`** langsung di browser Anda, atau gunakan ekstensi VS Code seperti **Live Server** untuk preview yang lebih baik.
+3.  *(Opsional)* Menggunakan Node.js/npx:
+    npx serve .
+
+##  Deployment
+Website ini secara otomatis dideploy ke Vercel setiap kali ada perubahan yang didorong ke branch `main`.
+Untuk melakukan deployment secara manual menggunakan Vercel CLI:
+vercel --prod
