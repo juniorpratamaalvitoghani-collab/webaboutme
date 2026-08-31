@@ -30,7 +30,7 @@ Website ini dibagi menjadi beberapa bagian utama:
 
 Bagian "Website" menampilkan 3 aplikasi web unggulan saya:
 
-1.  Anti-Scam URL: Sistem deteksi URL phishing untuk meningkatkan keamanan pengguna internet.
+1.  AntiScam URL: Sistem deteksi URL phishing untuk meningkatkan keamanan pengguna internet.
 2.  Wisata Nganjuk: Panduan dan daftar lokasi wisata menarik di Kabupaten Nganjuk.
 3.  VT Downloader: Alat untuk mengunduh video TikTok tanpa tanda air (watermark).
 
@@ -49,5 +49,5 @@ Jika Anda ingin melihat atau mengembangkan website ini di komputer lokal Anda:
 
 ##  Deployment
 Website ini secara otomatis dideploy ke Vercel setiap kali ada perubahan yang didorong ke branch main.
-Untuk melakukan deployment secara manual menggunakan Vercel CLI:
+Cara melakukan deployment secara manual menggunakan Vercel CLI:
 vercel --prod
